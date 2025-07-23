@@ -1,7 +1,189 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Micah</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Soft shadow */
+            transition: transform 0.3s ease-in-out;
+        }
+        .section:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient header */
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom-left-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            margin-bottom: 2rem;
+        }
+        .skill-item {
+            background-color: #e2e8f0; /* Lighter gray for skill tags */
+            color: #4a5568;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px; /* Pill shape */
+            font-weight: 600;
+            margin: 0.5rem;
+            display: inline-block;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .skill-item:hover {
+            background-color: #cbd5e0; /* Slightly darker on hover */
+        }
+        .hover-scale {
+            transition: transform 0.2s ease-in-out;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header Section -->
+    <header class="header-bg">
+        <div class="container">
+            <h1 class="text-5xl font-extrabold mb-4 animate-pulse">Hello, I'm Micah!</h1>
+            <!-- Sub-text about corner of internet removed -->
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- About Me Section -->
+        <section id="about" class="section">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Your actual image URL has been added here -->
+                <img src="https://media.licdn.com/dms/image/v2/C5603AQHdYloF3lHrNg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1533682943203?e=2147483647&v=beta&t=up78y8w8GrWE10F4CRYfqqtmP59lkTwmh04MCftBoiM" alt="Your Photo" class="w-36 h-36 rounded-full object-cover mr-0 md:mr-8 mb-6 md:mb-0 border-4 border-purple-400 shadow-lg hover-scale">
+                <div>
+                    <p class="text-lg text-gray-700 mb-4">
+                        In my free time, I enjoy camping with my wife and two small boys, reading classical and practical books, learning new tech, and enjoy getting a new power tool. I value teamwork and honesty.
+                    </p>
+                    <p class="text-lg text-gray-700">
+                        I am an experienced leader in the cybersecurity industry, managing teams that foster creativity. My professional strengths include emotional intelligence, conflict resolution, project management, knowledge management, and web self-service.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">My Skills</h2>
+            <div class="flex flex-wrap justify-center md:justify-start">
+                <span class="skill-item">Project Management</span>
+                <span class="skill-item">Knowledge Management</span>
+                <span class="skill-item">Online Communities</span>
+                <span class="skill-item">Relationship Building</span>
+                <span class="skill-item">Creative Problem Solving</span>
+                <span class="skill-item">Time Management</span>
+                <span class="skill-item">Teamwork</span>
+                <!-- Add more skills here -->
+            </div>
+        </section>
+
+        <!-- Hobbies & Interests Section -->
+        <section id="hobbies" class="section">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Hobbies & Interests</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover-scale">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">💻 Coding & Tech</h3>
+                    <p class="text-gray-700">I enjoy diving into new programming languages and frameworks, building small projects, and keeping up with the latest in technology.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover-scale">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">📚 Reading</h3>
+                    <p class="text-gray-700">I enjoy reading classical books like "Great Expectations," as well as practical books on leadership and adventure/mountaineering.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover-scale">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🏕️ Hammock Making</h3>
+                    <p class="text-gray-700">I've crafted a hammock from scratch using rip-stop nylon, a few good knots, and a ridge line for a relaxing lay every time.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover-scale">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🚶‍♂️ Hiking & Outdoors</h3>
+                    <p class="text-gray-700">Exploring nature trails and enjoying the fresh air is my way to relax and recharge.</p>
+                </div>
+                <!-- Add more hobbies here -->
+            </div>
+        </section>
+
+        <!-- Dynamic Fun Fact Section -->
+        <section id="fun-fact" class="section text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">A Fun Fact About Me!</h2>
+            <p id="funFactDisplay" class="text-xl text-gray-700 mb-6">Click the button to reveal a fun fact!</p>
+            <button id="factButton" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
+                Tell Me a Fact!
+            </button>
+        </section>
+
+        <!-- Connect with Me Section -->
+        <section id="connect" class="section text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Connect with Me</h2>
+            <a href="https://www.linkedin.com/in/micahtvorst" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                Connect on LinkedIn
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="text-center py-8 text-gray-600">
+        <p>&copy; 2025 Micah Vorst. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for the dynamic fun fact
+        const funFacts = [
+            "I'm PADI scuba certified with a nitrox emphasis!",
+            "I enjoy traveling and have been to South Korea, Thailand, Okinawa, Honduras, Mexico, Iceland, and London.",
+            "I am fascinated by ropes and knots, how they are so simple but can make such a huge difference to achieve something. I even have a first edition knot book called <a href='https://en.wikipedia.org/wiki/The_Ashley_Book_of_Knots' target='_blank' class='text-purple-600 hover:underline'>The Ashley Book of Knots</a>."
+        ];
+
+        const factButton = document.getElementById('factButton');
+        const funFactDisplay = document.getElementById('funFactDisplay');
+
+        // Function to get a random fact
+        function getRandomFact() {
+            const randomIndex = Math.floor(Math.random() * funFacts.length);
+            return funFacts[randomIndex];
+        }
+
+        // Event listener for the button click
+        factButton.addEventListener('click', () => {
+            funFactDisplay.innerHTML = getRandomFact(); // Use innerHTML to render the link
+        });
+
+        // Simple animation for the header text
+        window.onload = function() {
+            const headerText = document.querySelector('.header-bg h1');
+            headerText.classList.remove('animate-pulse'); // Remove initial pulse
+            headerText.style.opacity = 0;
+            headerText.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                headerText.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                headerText.style.opacity = 1;
+                headerText.style.transform = 'translateY(0)';
+            }, 500);
+        };
+    </script>
 </body>
 </html>

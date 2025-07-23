@@ -156,6 +156,8 @@
                 <span class="skill-item">Creative Problem Solving</span>
                 <span class="skill-item">Time Management</span>
                 <span class="skill-item">Teamwork</span>
+                <span class="skill-item">Web Self-Service</span>
+                <span class="skill-item">Technical Support</span>
                 <!-- Add more skills here -->
             </div>
         </section>
@@ -196,7 +198,7 @@
 
     <!-- Footer Section -->
     <footer class="text-center py-8 text-gray-600">
-        <p>&copy; 2025 Micah Vorst. All rights reserved.</p>
+        <p>&copy; <span id="currentYear"></span> Micah Vorst. All rights reserved.</p>
     </footer>
 
     <script>
@@ -232,6 +234,9 @@
                 headerText.style.opacity = 1;
                 headerText.style.transform = 'translateY(0)';
             }, 500);
+
+            // Set dynamic copyright year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
         };
     </script>
 </body>

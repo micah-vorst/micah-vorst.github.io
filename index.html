@@ -11,8 +11,10 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
-            color: #333;
+            background-color: #F7F7F7; /* Soft Off-White Background Base */
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8bGluZSB4MT0iMCIgeTE9IjEwIiB4Mj0iMTAiIHkyPSIwIiBzdHJva2U9IiNlMGU5ZTAiIHN0cm9rZS13aWR0aD0iMC42Ii8+Cjwvc3ZnPg=="); /* Subtle diagonal line pattern */
+            background-repeat: repeat;
+            color: #333333; /* Dark Grey Text */
             line-height: 1.6;
         }
         .container {
@@ -32,16 +34,50 @@
             transform: translateY(-5px); /* Slight lift on hover */
         }
         .header-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient header */
+            background: linear-gradient(135deg, #5C8D89 0%, #84C7C0 100%); /* Muted Teal/Sage Gradient */
             color: white;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem 4rem; /* Increased top padding to bring it down */
             text-align: center;
-            border-bottom-left-radius: 2rem;
-            border-bottom-right-radius: 2rem;
+            border-radius: 2rem; /* Rounded all corners */
+            margin-top: 2rem; /* Added margin to push it down from the very top */
             margin-bottom: 2rem;
+            display: flex; /* Use flexbox for alignment */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            position: relative; /* Needed for absolute positioning of LinkedIn icon */
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem; /* Space between elements */
+            margin-bottom: 0.5rem; /* Adjust spacing below the main title */
+        }
+        .header-content h1 {
+            margin-bottom: 0; /* Remove default margin from h1 */
+        }
+        .header-icon {
+            font-size: 3rem; /* Larger emoji */
+        }
+        .linkedin-top-right {
+            position: absolute;
+            top: 1.5rem; /* Adjust as needed */
+            right: 2rem; /* Adjust as needed */
+            color: white; /* Ensure icon is white */
+            z-index: 10; /* Ensure it's above other elements */
+        }
+        .linkedin-header-icon {
+            width: 2rem; /* Size of the LinkedIn icon */
+            height: 2rem;
+            fill: currentColor; /* Use current text color */
+            transition: transform 0.2s ease-in-out;
+        }
+        .linkedin-header-icon:hover {
+            transform: scale(1.1);
         }
         .skill-item {
-            background-color: #e2e8f0; /* Lighter gray for skill tags */
+            background-color: #D4E4D3; /* Pale Green for skill tags */
             color: #4a5568;
             padding: 0.5rem 1rem;
             border-radius: 9999px; /* Pill shape */
@@ -51,7 +87,7 @@
             transition: background-color 0.2s ease-in-out;
         }
         .skill-item:hover {
-            background-color: #cbd5e0; /* Slightly darker on hover */
+            background-color: #BBD1BA; /* Slightly darker on hover */
         }
         .hover-scale {
             transition: transform 0.2s ease-in-out;
@@ -59,15 +95,36 @@
         .hover-scale:hover {
             transform: scale(1.05);
         }
+        /* Specific button styling for the new scheme */
+        #factButton {
+            background-color: #5C8D89; /* Primary button color */
+            color: white;
+            font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-50;
+        }
+        #factButton:hover {
+            background-color: #84C7C0; /* Lighter Teal/Sage on hover */
+        }
+        #factButton:focus {
+            background-color: #5C8D89; /* Keep main color on focus */
+            box-shadow: 0 0 0 4px rgba(92, 141, 137, 0.5); /* Focus ring with primary color */
+        }
     </style>
 </head>
 <body class="antialiased">
     <!-- Header Section -->
     <header class="header-bg">
         <div class="container">
-            <h1 class="text-5xl font-extrabold mb-4 animate-pulse">Hello, I'm Micah!</h1>
-            <!-- Sub-text about corner of internet removed -->
+            <div class="header-content">
+                <span class="header-icon" role="img" aria-label="Waving hand">👋</span>
+                <h1 class="text-5xl font-extrabold animate-pulse">Hello, I'm Micah!</h1>
+            </div>
         </div>
+        <!-- LinkedIn icon moved to top right -->
+        <a href="https://www.linkedin.com/in/micahtvorst" target="_blank" aria-label="Connect with me on LinkedIn" class="linkedin-top-right">
+            <svg class="linkedin-header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0zM7.27 20.15H3.65V9.09h3.62v11.06zM5.46 7.64c-1.2 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18 2.18.98 2.18 2.18-.97 2.18-2.18 2.18zM20.35 20.15h-3.62v-5.4c0-1.3-.47-2.18-1.61-2.18-1.2 0-1.92.83-1.92 2.18v5.4H9.58V9.09h3.62v1.56c.5-.9 1.62-2.12 3.27-2.12 2.39 0 4.28 1.56 4.28 4.92v6.62z"/>
+            </svg>
+        </a>
     </header>
 
     <main class="container">
@@ -76,7 +133,7 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-6">About Me</h2>
             <div class="flex flex-col md:flex-row items-center">
                 <!-- Your actual image URL has been added here -->
-                <img src="https://media.licdn.com/dms/image/v2/C5603AQHdYloF3lHrNg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1533682943203?e=2147483647&v=beta&t=up78y8w8GrWE10F4CRYfqqtmP59lkTwmh04MCftBoiM" alt="Your Photo" class="w-36 h-36 rounded-full object-cover mr-0 md:mr-8 mb-6 md:mb-0 border-4 border-purple-400 shadow-lg hover-scale">
+                <img src="https://media.licdn.com/dms/image/v2/C5603AQHdYloF3lHrNg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1533682943203?e=2147483647&v=beta&t=up78y8w8GrWE10F4CRYfqqtmP59lkTwmh04MCftBoiM" alt="Your Photo" class="w-36 h-36 rounded-full object-cover mr-0 md:mr-8 mb-6 md:mb-0 border-4 border-[#84C7C0] shadow-lg hover-scale">
                 <div>
                     <p class="text-lg text-gray-700 mb-4">
                         In my free time, I enjoy camping with my wife and two small boys, reading classical and practical books, learning new tech, and enjoy getting a new power tool. I value teamwork and honesty.
@@ -132,16 +189,8 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-6">A Fun Fact About Me!</h2>
             <p id="funFactDisplay" class="text-xl text-gray-700 mb-6">Click the button to reveal a fun fact!</p>
             <button id="factButton" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
-                Tell Me a Fact!
+                Next Fact
             </button>
-        </section>
-
-        <!-- Connect with Me Section -->
-        <section id="connect" class="section text-center">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Connect with Me</h2>
-            <a href="https://www.linkedin.com/in/micahtvorst" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                Connect on LinkedIn
-            </a>
         </section>
     </main>
 
@@ -158,18 +207,18 @@
             "I am fascinated by ropes and knots, how they are so simple but can make such a huge difference to achieve something. I even have a first edition knot book called <a href='https://en.wikipedia.org/wiki/The_Ashley_Book_of_Knots' target='_blank' class='text-purple-600 hover:underline'>The Ashley Book of Knots</a>."
         ];
 
+        let currentFactIndex = -1; // Initialize to -1 so the first click shows the first fact
+
         const factButton = document.getElementById('factButton');
         const funFactDisplay = document.getElementById('funFactDisplay');
 
-        // Function to get a random fact
-        function getRandomFact() {
-            const randomIndex = Math.floor(Math.random() * funFacts.length);
-            return funFacts[randomIndex];
-        }
-
         // Event listener for the button click
         factButton.addEventListener('click', () => {
-            funFactDisplay.innerHTML = getRandomFact(); // Use innerHTML to render the link
+            currentFactIndex++;
+            if (currentFactIndex >= funFacts.length) {
+                currentFactIndex = 0; // Loop back to the beginning
+            }
+            funFactDisplay.innerHTML = funFacts[currentFactIndex]; // Use innerHTML to render the link
         });
 
         // Simple animation for the header text

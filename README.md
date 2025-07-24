@@ -1,4 +1,5 @@
 Micah Vorst - Personal Portfolio
+
 Welcome to my GitHub! This repository serves as the home for my professional and personal life, including projects and interests.
 
 About Me

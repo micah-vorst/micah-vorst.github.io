@@ -1,243 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YTZGTYDMY0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YTZGTYDMY0');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Micah Vorst</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F7F7F7; /* Soft Off-White Background Base */
-            background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8bGluZSB4MT0iMCIgeTE9IjEwIiB4Mj0iMTAiIHkyPSIwIiBzdHJva2U9IiNlMGU5ZTAiIHN0cm9rZS13aWR0aD0iMC42Ii8+Cjwvc3ZnPg=="); /* Subtle diagonal line pattern */
-            background-repeat: repeat;
-            color: #333333; /* Dark Grey Text */
-            line-height: 1.6;
+            background-color: #111827; /* Dark blue-gray background */
+            color: #e5e7eb; /* Light gray text */
         }
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 2rem;
+        .gradient-text {
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .section {
-            background-color: #ffffff;
-            border-radius: 1.5rem; /* More rounded corners */
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Soft shadow */
-            transition: transform 0.3s ease-in-out;
+        .subtle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.1), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(192, 132, 252, 0.1), transparent 30%);
+            animation: pulse-background 15s infinite ease-in-out;
         }
-        .section:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
+        @keyframes pulse-background {
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.7; transform: scale(1); }
         }
-        .header-bg {
-            background: linear-gradient(135deg, #5C8D89 0%, #84C7C0 100%); /* Muted Teal/Sage Gradient */
-            color: white;
-            padding: 5rem 2rem 4rem; /* Increased top padding to bring it down */
-            text-align: center;
-            border-radius: 2rem; /* Rounded all corners */
-            margin-top: 2rem; /* Added margin to push it down from the very top */
-            margin-bottom: 2rem;
-            display: flex; /* Use flexbox for alignment */
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center horizontally */
-            justify-content: center; /* Center vertically */
-            position: relative; /* Needed for absolute positioning of LinkedIn icon */
+        .flashy-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
         }
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem; /* Space between elements */
-            margin-bottom: 0.5rem; /* Adjust spacing below the main title */
-        }
-        .header-content h1 {
-            margin-bottom: 0; /* Remove default margin from h1 */
-        }
-        .header-icon {
-            font-size: 3rem; /* Larger emoji */
-        }
-        .linkedin-top-right {
+        .flashy-button::before {
+            content: '';
             position: absolute;
-            top: 1.5rem; /* Adjust as needed */
-            right: 2rem; /* Adjust as needed */
-            color: white; /* Ensure icon is white */
-            z-index: 10; /* Ensure it's above other elements */
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 40%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease;
+            z-index: -1;
         }
-        .linkedin-header-icon {
-            width: 2rem; /* Size of the LinkedIn icon */
-            height: 2rem;
-            fill: currentColor; /* Use current text color */
-            transition: transform 0.2s ease-in-out;
+        .flashy-button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
         }
-        .linkedin-header-icon:hover {
-            transform: scale(1.1);
+        .flashy-button:hover {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5), 0 0 50px rgba(192, 132, 252, 0.3);
+            transform: translateY(-2px);
         }
-        .skill-item {
-            background-color: #D4E4D3; /* Pale Green for skill tags */
-            color: #4a5568;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px; /* Pill shape */
-            font-weight: 600;
-            margin: 0.5rem;
-            display: inline-block;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .skill-item:hover {
-            background-color: #BBD1BA; /* Slightly darker on hover */
-        }
-        .hover-scale {
-            transition: transform 0.2s ease-in-out;
-        }
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        /* Specific button styling for the new scheme */
-        #factButton {
-            background-color: #5C8D89; /* Primary button color */
-            color: white;
-            font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-50;
-        }
-        #factButton:hover {
-            background-color: #84C7C0; /* Lighter Teal/Sage on hover */
-        }
-        #factButton:focus {
-            background-color: #5C8D89; /* Keep main color on focus */
-            box-shadow: 0 0 0 4px rgba(92, 141, 137, 0.5); /* Focus ring with primary color */
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
         }
     </style>
 </head>
 <body class="antialiased">
-    <!-- Header Section -->
-    <header class="header-bg">
-        <div class="container">
-            <div class="header-content">
-                <span class="header-icon" role="img" aria-label="Waving hand">👋</span>
-                <h1 class="text-5xl font-extrabold animate-pulse">Hello, I'm Micah!</h1>
-            </div>
+    <div class="subtle-background"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-10 bg-gray-900/50 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold gradient-text">Micah Vorst</h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-sky-400 transition">About</a>
+                <a href="#contact" class="text-gray-300 hover:text-sky-400 transition">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
-        <!-- LinkedIn icon moved to top right -->
-        <a href="https://www.linkedin.com/in/micahtvorst" target="_blank" aria-label="Connect with me on LinkedIn" class="linkedin-top-right">
-            <svg class="linkedin-header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0zM7.27 20.15H3.65V9.09h3.62v11.06zM5.46 7.64c-1.2 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18 2.18.98 2.18 2.18-.97 2.18-2.18 2.18zM20.35 20.15h-3.62v-5.4c0-1.3-.47-2.18-1.61-2.18-1.2 0-1.92.83-1.92 2.18v5.4H9.58V9.09h3.62v1.56c.5-.9 1.62-2.12 3.27-2.12 2.39 0 4.28 1.56 4.28 4.92v6.62z"/>
-            </svg>
-        </a>
+        <div id="mobile-menu" class="hidden md:hidden">
+             <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">About</a>
+             <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Contact</a>
+        </div>
     </header>
 
-    <main class="container">
-        <!-- About Me Section -->
-        <section id="about" class="section">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <!-- Your actual image URL has been added here -->
-                <img src="https://media.licdn.com/dms/image/v2/C5603AQHdYloF3lHrNg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1533682943203?e=2147483647&v=beta&t=up78y8w8GrWE10F4CRYfqqtmP59lkTwmh04MCftBoiM" alt="Your Photo" class="w-36 h-36 rounded-full object-cover mr-0 md:mr-8 mb-6 md:mb-0 border-4 border-[#84C7C0] shadow-lg hover-scale">
-                <div>
-                    <p class="text-lg text-gray-700 mb-4">
-                        In my free time, I enjoy camping with my wife and two small boys, reading classical and practical books, learning new tech, and enjoy getting a new power tool. I value teamwork and honesty.
-                    </p>
-                    <p class="text-lg text-gray-700">
+    <main class="container mx-auto px-6">
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center">
+            <div class="max-w-3xl">
+                <h2 class="text-5xl md:text-7xl font-bold tracking-tight">
+                    Hi, I'm <span class="gradient-text">Micah Vorst</span>
+                </h2>
+                <p class="mt-6 text-xl md:text-2xl text-gray-300">
+                    A cybersecurity professional with over a decade of experience including project management, web Self-Service, and out of the box thinking.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact" class="flashy-button bg-sky-500/80 text-white font-semibold py-3 px-8 rounded-full border-2 border-sky-400">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="pb-20">
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 order-2 md:order-1">
+                    <h3 class="text-3xl font-bold mb-4 gradient-text">About Me</h3>
+                    <p class="text-gray-300 mb-4">
                         I am an experienced leader in the cybersecurity industry, managing teams that foster creativity. My professional strengths include emotional intelligence, conflict resolution, project management, knowledge management, and web self-service.
                     </p>
+                    <p class="text-gray-300">
+                       In my free time, I enjoy camping with my wife and two small boys, reading classical and practical books, learning new tech, and enjoy getting a new power tool. I value teamwork and honesty.
+                    </p>
+                </div>
+                <div class="order-1 md:order-2 flex justify-center">
+                    <img src="https://media.licdn.com/dms/image/v2/C5603AQHdYloF3lHrNg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1533682943203?e=2147483647&v=beta&t=up78y8w8GrWE10F4CRYfqqtmP59lkTwmh04MCftBoiM" alt="Micah Vorst" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl border-4 border-violet-500/50"
+                    onerror="this.onerror=null;this.src='https://placehold.co/320x320/1f2937/e5e7eb?text=Micah+V.';">
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="section">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">My Skills</h2>
-            <div class="flex flex-wrap justify-center md:justify-start">
-                <span class="skill-item">Project Management</span>
-                <span class="skill-item">Knowledge Management</span>
-                <span class="skill-item">Online Communities</span>
-                <span class="skill-item">Relationship Building</span>
-                <span class="skill-item">Creative Problem Solving</span>
-                <span class="skill-item">Time Management</span>
-                <span class="skill-item">Teamwork</span>
-                <span class="skill-item">Web Self-Service</span>
-                <span class="skill-item">Technical Support</span>
-                <!-- Add more skills here -->
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="max-w-2xl mx-auto text-center glass-card p-10">
+                <h3 class="text-4xl font-bold mb-4 gradient-text">Let's Connect</h3>
+                <p class="text-gray-300 mb-8">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team. Honesty and teamwork are at the heart of everything I do.
+                </p>
+                 <div class="mt-10 flex justify-center space-x-8">
+                    <a href="https://github.com/micah-vorst" target="_blank" class="text-gray-400 hover:text-sky-400 transition">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/micahtvorst/" target="_blank" class="text-gray-400 hover:text-sky-400 transition">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
             </div>
-        </section>
-
-        <!-- Hobbies & Interests Section -->
-        <section id="hobbies" class="section">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Hobbies & Interests</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover-scale">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">💻 Coding & Tech</h3>
-                    <p class="text-gray-700">I enjoy diving into new programming languages and frameworks, building small projects, and keeping up with the latest in technology.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover-scale">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">📚 Reading</h3>
-                    <p class="text-gray-700">I enjoy reading classical books like "Great Expectations," as well as practical books on leadership and adventure/mountaineering.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover-scale">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🏕️ Hammock Making</h3>
-                    <p class="text-gray-700">I've crafted a hammock from scratch using rip-stop nylon, a few good knots, and a ridge line for a relaxing lay every time.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover-scale">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🚶‍♂️ Hiking & Outdoors</h3>
-                    <p class="text-gray-700">Exploring nature trails and enjoying the fresh air is my way to relax and recharge.</p>
-                </div>
-                <!-- Add more hobbies here -->
-            </div>
-        </section>
-
-        <!-- Dynamic Fun Fact Section -->
-        <section id="fun-fact" class="section text-center">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">A Fun Fact About Me!</h2>
-            <p id="funFactDisplay" class="text-xl text-gray-700 mb-6">Click the button to reveal a fun fact!</p>
-            <button id="factButton" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
-                Next Fact
-            </button>
         </section>
     </main>
 
-    <!-- Footer Section -->
-    <footer class="text-center py-8 text-gray-600">
-        <p>&copy; <span id="currentYear"></span> Micah Vorst. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="text-center py-8 mt-12 border-t border-gray-800">
+        <p class="text-gray-500">&copy; <span id="year"></span> Micah Vorst.</p>
     </footer>
 
     <script>
-        // JavaScript for the dynamic fun fact
-        const funFacts = [
-            "I'm PADI scuba certified with a nitrox emphasis!",
-            "I enjoy traveling and have been to South Korea, Thailand, Okinawa, Honduras, Mexico, Iceland, and London.",
-            "I am fascinated by ropes and knots, how they are so simple but can make such a huge difference to achieve something. I even have a first edition knot book called <a href='https://en.wikipedia.org/wiki/The_Ashley_Book_of_Knots' target='_blank' class='text-purple-600 hover:underline'>The Ashley Book of Knots</a>."
-        ];
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-        let currentFactIndex = -1; // Initialize to -1 so the first click shows the first fact
-
-        const factButton = document.getElementById('factButton');
-        const funFactDisplay = document.getElementById('funFactDisplay');
-
-        // Event listener for the button click
-        factButton.addEventListener('click', () => {
-            currentFactIndex++;
-            if (currentFactIndex >= funFacts.length) {
-                currentFactIndex = 0; // Loop back to the beginning
-            }
-            funFactDisplay.innerHTML = funFacts[currentFactIndex]; // Use innerHTML to render the link
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Simple animation for the header text
-        window.onload = function() {
-            const headerText = document.querySelector('.header-bg h1');
-            headerText.classList.remove('animate-pulse'); // Remove initial pulse
-            headerText.style.opacity = 0;
-            headerText.style.transform = 'translateY(-20px)';
-            setTimeout(() => {
-                headerText.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
-                headerText.style.opacity = 1;
-                headerText.style.transform = 'translateY(0)';
-            }, 500);
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
 
-            // Set dynamic copyright year
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-        };
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>

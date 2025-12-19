@@ -1,202 +1,350 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Micah Vorst — self-service, knowledge, and customer experience. A simple one-page snapshot." />
   <title>Micah Vorst</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Font swap: warm + modern (fast, no JS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      /* Holiday / New Year palette (not "red/green" loud) */
+      --ink: #0f172a;
+      --muted: rgba(15,23,42,.68);
+      --paper: #fbf7ef;          /* warm paper */
+      --paper2:#f4efe4;
+      --evergreen:#0f3d2e;
+      --cranberry:#7a1f2b;
+      --gold:#b38b2a;
+      --line: rgba(15,23,42,.12);
+      --shadow: 0 18px 50px rgba(2,6,23,.16);
+      --radius: 20px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      color:var(--ink);
+      background: var(--paper);
+      font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* Subtle paper texture + festive glow (no images hosted by you) */
+    .bg{
+      position:fixed; inset:0; z-index:-2;
+      background:
+        radial-gradient(900px 520px at 18% 16%, rgba(179,139,42,.18), transparent 60%),
+        radial-gradient(900px 520px at 82% 22%, rgba(122,31,43,.14), transparent 62%),
+        radial-gradient(900px 520px at 50% 90%, rgba(15,61,46,.12), transparent 60%),
+        linear-gradient(180deg, var(--paper), var(--paper2));
+    }
+
+    /* Tiny SVG noise overlay (very light) */
+    .noise{
+      position:fixed; inset:0; z-index:-1;
+      opacity:.07;
+      pointer-events:none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    }
+
+    .wrap{
+      min-height:100%;
+      padding: clamp(18px, 3vw, 36px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* Surprising layout: "postcard spread" with ribbon spine */
+    .spread{
+      width: min(1040px, 100%);
+      display:grid;
+      grid-template-columns: 1.05fr 32px .95fr;
+      gap: 0;
+      align-items:stretch;
+    }
+
+    @media (max-width: 900px){
+      .spread{ grid-template-columns: 1fr; }
+      .spine{ display:none; }
+    }
+
+    .panel{
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* Top "twinkle lights" border */
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:0 0 auto 0;
+      height: 10px;
+      background:
+        radial-gradient(circle at 8px 5px, rgba(179,139,42,.95) 0 3px, transparent 4px),
+        radial-gradient(circle at 28px 5px, rgba(122,31,43,.9) 0 3px, transparent 4px),
+        radial-gradient(circle at 48px 5px, rgba(15,61,46,.92) 0 3px, transparent 4px),
+        radial-gradient(circle at 68px 5px, rgba(179,139,42,.95) 0 3px, transparent 4px),
+        radial-gradient(circle at 88px 5px, rgba(122,31,43,.9) 0 3px, transparent 4px);
+      background-size: 96px 10px;
+      opacity:.55;
+      transform: translateY(0);
+    }
+
+    /* New Year sparkle (lightweight, CSS-only) */
+    .sparkle{
+      position:absolute;
+      inset: 14px 14px auto auto;
+      width: 90px;
+      height: 90px;
+      pointer-events:none;
+      opacity:.9;
+    }
+    .sparkle::before,
+    .sparkle::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(179,139,42,.95) 0 2px, transparent 3px),
+        radial-gradient(circle at 60% 25%, rgba(122,31,43,.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 65%, rgba(15,61,46,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 35% 70%, rgba(179,139,42,.9) 0 2px, transparent 3px);
+      filter: blur(.1px);
+      animation: twinkle 3.6s ease-in-out infinite;
+    }
+    .sparkle::after{
+      transform: rotate(18deg) scale(1.04);
+      opacity:.75;
+      animation-duration: 4.8s;
+    }
+    @keyframes twinkle{
+      0%,100%{ transform: translateY(0) scale(1); opacity:.85; }
+      50%{ transform: translateY(-2px) scale(1.03); opacity:1; }
+    }
+
+    .left{
+      padding: clamp(22px, 3.8vw, 42px);
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:600;
+      color: rgba(15,23,42,.72);
+      letter-spacing:.02em;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(15,23,42,.10);
+      font-size: 12px;
+    }
+
+    .dot{
+      width:10px; height:10px; border-radius:99px;
+      background: conic-gradient(from 180deg, var(--gold), var(--cranberry), var(--evergreen), var(--gold));
+      box-shadow: 0 0 0 4px rgba(179,139,42,.10);
+    }
+
+    h1{
+      margin: 14px 0 10px;
+      font-family: Fraunces, ui-serif, Georgia, serif;
+      font-size: clamp(34px, 4.6vw, 52px);
+      letter-spacing: -0.02em;
+      line-height:1.05;
+    }
+
+    .lead{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: clamp(15px, 1.7vw, 18px);
+      max-width: 68ch;
+    }
+
+    .signature{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      color: rgba(15,23,42,.72);
+      font-size: 13px;
+    }
+
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.70);
+    }
+
+    /* Ribbon spine */
+    .spine{
+      position:relative;
+    }
+
+    .spine::before{
+      content:"";
+      position:absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 50%;
+      width: 10px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(15,61,46,.75), rgba(122,31,43,.70));
+      box-shadow: 0 10px 30px rgba(2,6,23,.10);
+    }
+
+    .spine::after{
+      content:"";
+      position:absolute;
+      top: 50%;
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      transform: translate(-50%,-50%);
+      background: radial-gradient(circle, rgba(179,139,42,.95) 0 6px, rgba(179,139,42,.25) 7px, transparent 9px);
+      border-radius: 999px;
+    }
+
+    .right{
+      padding: clamp(20px, 3.4vw, 36px);
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+
+    .chapter{
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.70);
+      border-radius: 18px;
+      padding: 16px 16px 12px;
+    }
+
+    .chapter h2{
+      margin:0 0 10px;
+      display:flex;
+      align-items:baseline;
+      gap:12px;
+    }
+
+    .num{
+      font-family: Fraunces, ui-serif, Georgia, serif;
+      font-weight:700;
+      font-size: 28px;
+      color: rgba(15,23,42,.78);
+      letter-spacing: -.02em;
+    }
+
+    .title{
+      font-size: 16px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: rgba(15,23,42,.68);
+    }
+
+    .chapter p{ margin: 0 0 10px; color: var(--muted); }
+
+    ul{
       margin: 0;
-      padding: 0;
+      padding-left: 1.15rem;
+    }
+    li{ margin: 8px 0; color: rgba(15,23,42,.86); }
+    li::marker{ color: rgba(15,23,42,.35); }
+
+    .closing{
+      border-top: 1px dashed rgba(15,23,42,.18);
+      margin-top: 12px;
+      padding-top: 12px;
+      color: rgba(15,23,42,.76);
     }
 
-    html, body {
-      height: 100%;
+    footer{
+      margin-top: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      color: rgba(15,23,42,.55);
+      font-size: 12px;
     }
 
-    ul {
-  list-style: disc;
-  padding-left: 1.25rem; /* or 20px */
-  margin-left: 0;
-}
-      body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #ffffff;
-      color: #111827;
-      line-height: 1.6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+    @media (max-width: 900px){
+      footer{ flex-direction:column; align-items:flex-start; }
     }
 
-    .shell {
-      max-width: 640px;
-      width: 100%;
-    }
-
-    main {
-      background: #ffffff;
-      color: #111827;
-      border: 2px solid #166534; /* green border */
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
-      position: relative; /* for stamp positioning */
-    }
-
-    .eyebrow {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #6b7280;
-    }
-
-    h1 {
-      font-size: 2.1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #b91c1c; /* red for name */
-    }
-
-    .tagline {
-      font-size: 0.98rem;
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #166534; /* green label */
-    }
-
-    .sub {
-      font-size: 0.9rem;
-      color: #374151;
-    }
-
-    .section {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .sections {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .links {
-      margin-top: 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .links a {
-      text-decoration: none;
-      color: #111827;
-      border: 1px solid #111827;
-      padding: 6px 12px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      background: #ffffff;
-    }
-
-    .links a:hover {
-      background: #111827;
-      color: #ffffff;
-    }
-
-    .stamp {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 60px;
-      height: 60px;
-      border: 2px dashed #166534;
-      border-radius: 8px; /* square-ish stamp */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff;
-    }
-
-    .stamp-icon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-      transform: rotate(-8deg);
-    }
-
-    .stamp-icon-cactus {
-      font-size: 1rem;
-    }
-
-    .stamp-icon-text {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #166534;
-    }
-
-    footer {
-      margin-top: 16px;
-      font-size: 0.7rem;
-      color: #6b7280;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 16px;
-      }
-
-      main {
-        padding: 24px 20px;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
+    @media (prefers-reduced-motion: reduce){
+      .sparkle::before, .sparkle::after{ animation:none; }
     }
   </style>
 </head>
+
 <body>
-  <div class="shell">
-    <main>
-      <div class="stamp" aria-hidden="true">
-        <span class="stamp-icon">
-          <span class="stamp-icon-cactus">🌵</span>
-          <span class="stamp-icon-text">AZ</span>
-        </span>
-      </div>
-      <div class="eyebrow">Hi, I'm</div>
-          <h1>Hi, I’m Micah.</h1>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section class="spread" aria-label="One page snapshot">
+      <article class="panel left">
+        <div class="sparkle" aria-hidden="true"></div>
+
+        <div class="kicker">
+          <span class="badge"><span class="dot" aria-hidden="true"></span> Holiday + New Year</span>
+          <span class="badge">Arizona</span>
+        </div>
+
+        <h1>Hi, I’m Micah.</h1>
+
+        <p class="lead">
+          Thanks for stopping by — I hope you’re having a great holiday season and heading into the new year with some excitement and margin.
+        </p>
+
+        <p class="lead">
+          I live in Arizona with my wife and two young boys, and I spend my days helping people find answers, remove friction, and feel supported — both at work and in life.
+          This page is a small snapshot of what I care about and how I show up.
+        </p>
+
+        <div class="signature" aria-label="Quick identifiers">
+          <span class="pill">Self-service</span>
+          <span class="pill">Knowledge</span>
+          <span class="pill">CX</span>
+          <span class="pill">Practical outcomes</span>
+        </div>
+
+        <footer>
+          <div>© <span id="year"></span> Micah</div>
+          <div>Made to load fast • one file</div>
+        </footer>
+      </article>
+
+      <div class="spine" aria-hidden="true"></div>
+
+      <aside class="panel right">
+        <div class="chapter" id="work">
+          <h2><span class="num">01</span><span class="title">Work</span></h2>
           <p>
-            Thanks for stopping by — I hope you’re having a great holiday season and heading
-            into the new year with some excitement and margin.
-          </p>
-          <p>
-            I live in Arizona with my wife and two young boys, and I spend my days helping
-            people find answers, remove friction, and feel supported — both at work and in life.
-            This page is a small snapshot of what I care about and how I show up.
-          </p>
-      <div class="sections">
-        <div class="section">
-          <div class="section-label">Work</div>
-            <p>
-            I bring over a decade of experience building and improving self-service experiences
-            for customers and internal teams. My work sits at the intersection of customer
-            experience, knowledge management, and scalable support.
+            I bring over a decade of experience building and improving self-service experiences for customers and internal teams.
+            My work sits at the intersection of customer experience, knowledge management, and scalable support.
           </p>
           <ul>
             <li>Support portals, knowledge bases, and online communities</li>
@@ -204,38 +352,32 @@
             <li>Reducing friction for customers while improving efficiency for teams</li>
             <li>Close partnership with Support, Product, Marketing, and Engineering</li>
           </ul>
-          <p>
-            I care deeply about practical outcomes — clearer answers, fewer dead ends, and tools
-            that people actually enjoy using.
+          <p class="closing">
+            I care deeply about practical outcomes — clearer answers, fewer dead ends, and tools that people actually enjoy using.
           </p>
         </div>
 
-        <div class="section">
-          <div class="section-label">Personal</div>
-              <p>
-                Outside of work, I try to keep life simple and intentional. I’m at my best when
-                I’m present in the moment — especially the small, ordinary ones.
-              </p>
-              <ul>
-                <li>Exploring Arizona landscapes</li>
-                <li>Building things (digital and physical)</li>
-                <li>Learning continuously</li>
-                <li>Connecting with people in meaningful, human ways</li>
-              </ul>
-              <p>
-                I <i>try</i> not to take myself too seriously — work matters, but people matter more.
-              </p>
+        <div class="chapter" id="personal">
+          <h2><span class="num">02</span><span class="title">Personal</span></h2>
+          <p>
+            Outside of work, I try to keep life simple and intentional. I’m at my best when I’m present in the moment — especially the small, ordinary ones.
+          </p>
+          <ul>
+            <li>Exploring Arizona landscapes</li>
+            <li>Building things (digital and physical)</li>
+            <li>Learning continuously</li>
+            <li>Connecting with people in meaningful, human ways</li>
+          </ul>
+          <p class="closing">
+            I try not to take myself too seriously — work matters, but people matter more.
+          </p>
         </div>
-      </div>
+      </aside>
+    </section>
+  </main>
 
-      <div class="links">
-        <a href="https://www.linkedin.com/in/micahtvorst/" target="_blank" rel="noopener">LinkedIn</a>
-        <!-- TODO: replace # with your real LinkedIn URL -->
-      </div>
-    </main>
-    <footer>
-      This page is intentionally simple, with a seasonal touch.
-    </footer>
-  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
